@@ -68,10 +68,21 @@ p {
 }
 
 #logo:hover {
-  color: #fff;
+  color: gray;
   text-decoration: none;
 }
 
+li .header-list {
+  color: #fff !important;
+  font-weight: bold;
+  &:hover {
+    color: gray !important;
+  }
+}
+
+#dropdown-title {
+  background-color: teal;
+}
 /* デバッグウインドウ */
 
 .debug_dump {
