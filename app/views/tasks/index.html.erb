@@ -4,7 +4,7 @@
 
 <div class="row">
   <div class="col-md-10 col-md-offset-1">
-    <%= link_to "タスク新規作成", "#", class: "btn btn-lg btn-primary pull-right" %>
+    <%= link_to "タスク新規作成",  new_user_task_path(@user), class: "btn btn-lg btn-primary pull-right" %>
     <table class="table table-hovver" id="table-tasks">
       <thead>
         <tr>
@@ -16,7 +16,7 @@
       <tbody>
         <% @tasks.each do |task| %>
         <tr>
-          <td><%= task.name, "#", id="task-name" %></td>
+          <td><%= link_to task.name, tasks_path(task), id: "task-name" %></td>
           <td><%= task.created_at %></td>
           <td>
             <%= link_to '編集', edit_task_path(task), class: 'btn btn-success' %>
