@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_user, only: [:index, :show, :edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update]
+  before_action :admin_user, only: :destroy
   
   def index
     @users = User.paginate(page: params[:page], per_page: 20)
@@ -37,6 +41,18 @@ class UsersController < ApplicationController
     end
   end
   
+  def destroy
+    case @user.id
+    when 1, 2, 3
+      flash[:danger] = "このユーザーは削除できません。"
+      redirect_to users_url
+    else
+      @user.destroy
+      flash[:success] = "#{@user.name}のデーターを削除しました。"
+      redirect_to users_url
+    end
+  end
+  
   private
   
     def user_params
@@ -44,7 +60,7 @@ class UsersController < ApplicationController
     end
     
     def set_user
+      @user = User.find(params[:id])
     end
-    
     
 end
