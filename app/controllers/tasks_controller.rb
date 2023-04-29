@@ -19,7 +19,7 @@ class TasksController < ApplicationController
     @task = @user.tasks.build(task_params)
     if @task.save
       flash[:success] = "タスクを新規作成しました。"
-      redirect_to user_tasks_url(@user)
+      redirect_to user_tasks_url @user
     else
       render :new
     end
@@ -58,7 +58,7 @@ class TasksController < ApplicationController
   def set_task
     unless @task = @user.tasks.find_by(id: params[:id])
       flash[:danger] = "権限がありません。"
-      redirect_to user_tasks_url(@user) 
+      redirect_to user_tasks_url @user
    end
   end
 end
