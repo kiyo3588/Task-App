@@ -32,10 +32,6 @@ class UsersController < ApplicationController
   end
   
   def edit
-    @user = User.find(params[:id])
-  end
-  
-  def edit
     case @user.id
     when 1, 2, 3
       flash[:danger] = "このユーザーは編集できません。"

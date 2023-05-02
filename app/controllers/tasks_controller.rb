@@ -33,7 +33,7 @@ class TasksController < ApplicationController
     if @task.update_attributes(task_params)
       flash[:success] = "タスクを更新しました。"
       redirect_to user_task_url(@user, @task)
-    else
+    else 
       render :edit
     end
   end
@@ -58,7 +58,7 @@ class TasksController < ApplicationController
   def set_task
     unless @task = @user.tasks.find_by(id: params[:id])
       flash[:danger] = "権限がありません。"
-      redirect_to user_tasks_url @user
+      redirect_to user_tasks_url(@user) 
    end
   end
 end
